@@ -45,7 +45,7 @@ export const action: ActionFunction = async ({ request }) => {
 
   const response = await resetPass({ password, passwordConfirmation, code });
 
-  console.log({
+  console.log("res", {
     response,
   });
 
