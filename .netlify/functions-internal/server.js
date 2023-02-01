@@ -46,7 +46,7 @@ function handleRequest(request, responseStatusCode, responseHeaders, remixContex
   });
 }
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\root.tsx
+// route:/workspaces/viewprofiles/app/root.tsx
 var root_exports = {};
 __export(root_exports, {
   default: () => App,
@@ -57,9 +57,9 @@ __export(root_exports, {
 var import_node2 = require("@remix-run/node");
 
 // app/styles/app.css
-var app_default = "/build/_assets/app-GTX73DLH.css";
+var app_default = "/build/_assets/app-RJN4ZJMQ.css";
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\root.tsx
+// route:/workspaces/viewprofiles/app/root.tsx
 var import_react3 = require("@remix-run/react");
 
 // app/components/SiteHeader.tsx
@@ -101,7 +101,7 @@ var import_react2 = require("@remix-run/react"), SiteHeader = ({ user }) => {
 var import_node = require("@remix-run/node"), { getSession, commitSession, destroySession } = (0, import_node.createCookieSessionStorage)({
   cookie: {
     name: "userSession",
-    secure: !1,
+    secure: !0,
     sameSite: "lax",
     path: "/",
     maxAge: 60 * 60 * 24 * 30,
@@ -127,7 +127,7 @@ var logout = async (request) => {
   });
 };
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\root.tsx
+// route:/workspaces/viewprofiles/app/root.tsx
 var meta = () => ({
   charset: "utf-8",
   title: "Profiles | Find & connect with people",
@@ -146,7 +146,7 @@ function App() {
   }), /* @__PURE__ */ React.createElement(import_react3.Outlet, null), /* @__PURE__ */ React.createElement(import_react3.ScrollRestoration, null), /* @__PURE__ */ React.createElement(import_react3.Scripts, null), /* @__PURE__ */ React.createElement(import_react3.LiveReload, null))));
 }
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\routes\forgot-password.tsx
+// route:/workspaces/viewprofiles/app/routes/forgot-password.tsx
 var forgot_password_exports = {};
 __export(forgot_password_exports, {
   action: () => action,
@@ -158,7 +158,12 @@ var import_node3 = require("@remix-run/node"), import_react4 = require("@remix-r
 var slugify = (str) => str && str.toLowerCase().trim().replace(/[^\w\s-]/g, "").replace(/[\s_-]+/g, "-").replace(/^-+|-+$/g, ""), slugify_default = slugify;
 
 // app/models/profiles.server.ts
-var strapiApiUrl = process.env.STRAPI_API_URL, getProfiles = async () => await (await fetch(`${strapiApiUrl}/users/?populate=profilePic`)).json(), getProfileBySlug = async (slug) => {
+var strapiApiUrl = process.env.STRAPI_API_URL, getProfiles = async () => {
+  let response = await (await fetch(`${strapiApiUrl}/users/?populate=profilePic`)).json();
+  return console.log({
+    response
+  }), response;
+}, getProfileBySlug = async (slug) => {
   let response = await (await fetch(`${strapiApiUrl}/users?populate=profilePic&filters[slug]=${slug}`)).json();
   return console.log({ response }), response[0];
 }, signIn = async (data) => {
@@ -209,7 +214,7 @@ var strapiApiUrl = process.env.STRAPI_API_URL, getProfiles = async () => await (
   })
 })).json();
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\routes\forgot-password.tsx
+// route:/workspaces/viewprofiles/app/routes/forgot-password.tsx
 var action = async ({ request }) => {
   let email = (await request.formData()).get("email"), response = await sendResetMail(email);
   return (0, import_node3.json)(response);
@@ -245,7 +250,7 @@ var action = async ({ request }) => {
   }, " ", transition.state == "submitting" ? "Sending" : "Send link", " "))))));
 }, forgot_password_default = ForgotPass;
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\routes\reset-password.tsx
+// route:/workspaces/viewprofiles/app/routes/reset-password.tsx
 var reset_password_exports = {};
 __export(reset_password_exports, {
   action: () => action2,
@@ -311,7 +316,7 @@ var loader2 = async ({ request }) => {
   }, " ", transition.state == "submitting" ? "Sending" : "Reset password", " "))))));
 }, reset_password_default = ResetPass;
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\routes\register.tsx
+// route:/workspaces/viewprofiles/app/routes/register.tsx
 var register_exports = {};
 __export(register_exports, {
   action: () => action3,
@@ -440,7 +445,7 @@ var import_react6 = require("@remix-run/react"), import_react7 = require("react"
   }, " ", transition.state == "submitting" ? "Submitting" : "Submit", " ")))));
 }, ProfileForm_default = ProfileForm;
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\routes\register.tsx
+// route:/workspaces/viewprofiles/app/routes/register.tsx
 var action3 = async ({ request }) => {
   try {
     let formData = await request.formData(), email = formData.get("email"), password = formData.get("password"), username = formData.get("username"), title = formData.get("job-title"), twitterUsername = formData.get("twitterUsername"), bio = formData.get("bio"), websiteUrl = formData.get("website"), errors = {
@@ -475,7 +480,7 @@ var action3 = async ({ request }) => {
   })));
 }, register_default = Register;
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\routes\sign-out.tsx
+// route:/workspaces/viewprofiles/app/routes/sign-out.tsx
 var sign_out_exports = {};
 __export(sign_out_exports, {
   action: () => action4,
@@ -484,7 +489,7 @@ __export(sign_out_exports, {
 var import_node6 = require("@remix-run/node");
 var action4 = async ({ request }) => logout(request), loader3 = async () => (0, import_node6.redirect)("/");
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\routes\sign-in.tsx
+// route:/workspaces/viewprofiles/app/routes/sign-in.tsx
 var sign_in_exports = {};
 __export(sign_in_exports, {
   action: () => action5,
@@ -525,7 +530,7 @@ var action5 = async ({ request }) => {
   })));
 }, sign_in_default = Login;
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\routes\$slug.tsx
+// route:/workspaces/viewprofiles/app/routes/$slug.tsx
 var slug_exports = {};
 __export(slug_exports, {
   action: () => action6,
@@ -611,7 +616,7 @@ var import_react10 = require("@remix-run/react"), getImgUrl = ({ url, username }
   })))))))));
 }, ProfileCard_default = ProfileCard;
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\routes\$slug.tsx
+// route:/workspaces/viewprofiles/app/routes/$slug.tsx
 var loader4 = async ({ params, request }) => (0, import_node8.json)({
   userData: await getUserData(request),
   profile: await getProfileBySlug(params.slug)
@@ -690,7 +695,7 @@ var loader4 = async ({ params, request }) => (0, import_node8.json)({
   }))));
 }, slug_default = Profile;
 
-// route:C:\Users\user\Documents\otherprojs\writing\strapi\Strapi-v4-Authentication-with-Remix\remix-profiles\app\routes\index.tsx
+// route:/workspaces/viewprofiles/app/routes/index.tsx
 var routes_exports = {};
 __export(routes_exports, {
   default: () => Index,
@@ -720,7 +725,7 @@ function Index() {
 }
 
 // server-assets-manifest:@remix-run/dev/assets-manifest
-var assets_manifest_default = { version: "7359c22c", entry: { module: "/build/entry.client-HAB2YQCN.js", imports: ["/build/_shared/chunk-4OJWVCZN.js", "/build/_shared/chunk-O6YYFGCX.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-VVRFRWIV.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/$slug": { id: "routes/$slug", parentId: "root", path: ":slug", index: void 0, caseSensitive: void 0, module: "/build/routes/$slug-FYQMR4YE.js", imports: ["/build/_shared/chunk-7F3C7OWH.js", "/build/_shared/chunk-BVPJHGZZ.js", "/build/_shared/chunk-CIE5ETH3.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/forgot-password": { id: "routes/forgot-password", parentId: "root", path: "forgot-password", index: void 0, caseSensitive: void 0, module: "/build/routes/forgot-password-T22RPLY2.js", imports: ["/build/_shared/chunk-CIE5ETH3.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-I7GJYIYL.js", imports: ["/build/_shared/chunk-7F3C7OWH.js", "/build/_shared/chunk-CIE5ETH3.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/register": { id: "routes/register", parentId: "root", path: "register", index: void 0, caseSensitive: void 0, module: "/build/routes/register-J4T7R6GJ.js", imports: ["/build/_shared/chunk-BVPJHGZZ.js", "/build/_shared/chunk-CIE5ETH3.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/reset-password": { id: "routes/reset-password", parentId: "root", path: "reset-password", index: void 0, caseSensitive: void 0, module: "/build/routes/reset-password-K6PHXNEM.js", imports: ["/build/_shared/chunk-CIE5ETH3.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/sign-in": { id: "routes/sign-in", parentId: "root", path: "sign-in", index: void 0, caseSensitive: void 0, module: "/build/routes/sign-in-RD6E2KOQ.js", imports: ["/build/_shared/chunk-BVPJHGZZ.js", "/build/_shared/chunk-CIE5ETH3.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/sign-out": { id: "routes/sign-out", parentId: "root", path: "sign-out", index: void 0, caseSensitive: void 0, module: "/build/routes/sign-out-635EOYH3.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, url: "/build/manifest-7359C22C.js" };
+var assets_manifest_default = { version: "ae1c5f95", entry: { module: "/build/entry.client-HAUCQGNI.js", imports: ["/build/_shared/chunk-ZB2YYQWK.js", "/build/_shared/chunk-ZORK422C.js"] }, routes: { root: { id: "root", parentId: void 0, path: "", index: void 0, caseSensitive: void 0, module: "/build/root-SLVSJJIE.js", imports: void 0, hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/$slug": { id: "routes/$slug", parentId: "root", path: ":slug", index: void 0, caseSensitive: void 0, module: "/build/routes/$slug-Y7EENPLC.js", imports: ["/build/_shared/chunk-LA36X7EI.js", "/build/_shared/chunk-5BVFE7XW.js", "/build/_shared/chunk-Y5QFRUOZ.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/forgot-password": { id: "routes/forgot-password", parentId: "root", path: "forgot-password", index: void 0, caseSensitive: void 0, module: "/build/routes/forgot-password-CQHU3XIG.js", imports: ["/build/_shared/chunk-Y5QFRUOZ.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/index": { id: "routes/index", parentId: "root", path: void 0, index: !0, caseSensitive: void 0, module: "/build/routes/index-JTLZ4QXW.js", imports: ["/build/_shared/chunk-LA36X7EI.js", "/build/_shared/chunk-Y5QFRUOZ.js"], hasAction: !1, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/register": { id: "routes/register", parentId: "root", path: "register", index: void 0, caseSensitive: void 0, module: "/build/routes/register-A5VXXIKS.js", imports: ["/build/_shared/chunk-5BVFE7XW.js", "/build/_shared/chunk-Y5QFRUOZ.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/reset-password": { id: "routes/reset-password", parentId: "root", path: "reset-password", index: void 0, caseSensitive: void 0, module: "/build/routes/reset-password-WE75CFDK.js", imports: ["/build/_shared/chunk-Y5QFRUOZ.js"], hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/sign-in": { id: "routes/sign-in", parentId: "root", path: "sign-in", index: void 0, caseSensitive: void 0, module: "/build/routes/sign-in-XARUA7QW.js", imports: ["/build/_shared/chunk-5BVFE7XW.js", "/build/_shared/chunk-Y5QFRUOZ.js"], hasAction: !0, hasLoader: !1, hasCatchBoundary: !1, hasErrorBoundary: !1 }, "routes/sign-out": { id: "routes/sign-out", parentId: "root", path: "sign-out", index: void 0, caseSensitive: void 0, module: "/build/routes/sign-out-4QPHR3UO.js", imports: void 0, hasAction: !0, hasLoader: !0, hasCatchBoundary: !1, hasErrorBoundary: !1 } }, url: "/build/manifest-AE1C5F95.js" };
 
 // server-entry-module:@remix-run/dev/server-build
 var entry = { module: entry_server_exports }, routes = {
@@ -796,4 +801,3 @@ module.exports = __toCommonJS(stdin_exports);
   entry,
   routes
 });
-//# sourceMappingURL=server.js.map

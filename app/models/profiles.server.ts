@@ -14,6 +14,10 @@ const strapiApiUrl = process.env.STRAPI_API_URL
 export const getProfiles = async (): Promise<Array<Profile>> => {
   const profiles = await fetch(`${strapiApiUrl}/users/?populate=profilePic`)
   let response = await profiles.json()
+  console.log({
+    response
+  });
+
   // catchError(response)
   return response
 }
