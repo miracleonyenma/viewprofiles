@@ -1,7 +1,17 @@
 // ./app/routes/reset-password.tsx
 
-import { ActionFunction, json, LoaderFunction, redirect } from "@remix-run/node";
-import { Form, useActionData, useLoaderData, useTransition } from "@remix-run/react";
+import {
+  ActionFunction,
+  json,
+  LoaderFunction,
+  redirect,
+} from "@remix-run/node";
+import {
+  Form,
+  useActionData,
+  useLoaderData,
+  useTransition,
+} from "@remix-run/react";
 import { resetPass } from "~/models/profiles.server";
 
 type LoaderData = {
@@ -29,12 +39,22 @@ export const action: ActionFunction = async ({ request }) => {
   const password = formData.get("password");
   const passwordConfirmation = formData.get("confirmPassword");
 
+  // return error is passwords don't match
+  if (password != passwordConfirmation)
+    return json({ confirmPassword: "Passwords should match" });
+
   const response = await resetPass({ password, passwordConfirmation, code });
 
-  // return error is passwords don't match
-  if (password != passwordConfirmation) return json({ confirmPassword: "Passwords should match" });
+  console.log("res", {
+    response,
+  });
 
-  return json(response);
+  if (response.error) {
+    console.error(response.error);
+    return json({ error: response.error });
+  }
+
+  return redirect("/sign-in");
 };
 
 const ResetPass = () => {
@@ -55,16 +75,38 @@ const ResetPass = () => {
           <div className="wrapper">
             <div className="form-control">
               <label htmlFor="job-title">Password</label>
-              <input id="password" name="password" type="password" className="form-input" required />
+              <input
+                id="password"
+                name="password"
+                type="password"
+                className="form-input"
+                required
+              />
             </div>
             <div className="form-control">
               <label htmlFor="job-title">Confirm password</label>
-              <input id="confirmPassword" name="confirmPassword" type="password" className="form-input" required />
-              {error?.confirmPassword ? <em className="text-red-600">{error.confirmPassword}</em> : null}
+              <input
+                id="confirmPassword"
+                name="confirmPassword"
+                type="password"
+                className="form-input"
+                required
+              />
+              {error?.confirmPassword ? (
+                <em className="text-red-600">{error.confirmPassword}</em>
+              ) : null}
             </div>
             <div className="action-cont mt-4">
-              <button className="cta"> {transition.state == "submitting" ? "Sending" : "Reset password"} </button>
+              <button className="cta">
+                {" "}
+                {transition.state == "submitting"
+                  ? "Sending"
+                  : "Reset password"}{" "}
+              </button>
             </div>
+            {error?.error ? (
+              <em className="text-red-600">{error.error?.message}</em>
+            ) : null}
           </div>
         </Form>
       </div>

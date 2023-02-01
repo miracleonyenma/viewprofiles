@@ -22,10 +22,9 @@ export const loader = async () => {
 
 export default function Index() {
   const { profiles } = useLoaderData() as Loaderdata;
-
   return (
     <section className="site-section profiles-section">
-      <div>
+      <div className="wrapper">
         <header className="section-header">
           <h2 className="text-4xl">Explore profiles</h2>
           <p>Find and connect with amazing people all over the world!</p>
